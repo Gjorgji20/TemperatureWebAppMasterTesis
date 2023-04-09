@@ -16,9 +16,13 @@ namespace TemperatureWebAppMasterTesis.Controllers
             Delay = new MinimalDelay();
         }
 
-       public IActionResult Index()
+       public async Task<IActionResult> Index()
         {
-            Delay.MinimalDelayResult();
+            while (true)
+            {
+                Delay.MinimalDelayResult();
+                await Task.Delay(10000);
+            }
             return View();
         }
         public IActionResult Privacy()
