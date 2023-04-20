@@ -21,7 +21,8 @@ namespace TemperatureWebAppMasterTesis.Controllers
             while (true)
             {
                 Delay.MinimalDelayResult();
-                await Task.Delay(10000);
+                await Task.Delay(6000);
+
             }
             return View();
         }
