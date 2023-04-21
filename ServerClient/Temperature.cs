@@ -11,6 +11,8 @@ namespace ServerClient
     public class Temperature
     {
         public int Celsius { get; set; }
+        public int Fahrenheit { get; set; }
+        public DateTime DataSend { get; set; }
     }
 
 }

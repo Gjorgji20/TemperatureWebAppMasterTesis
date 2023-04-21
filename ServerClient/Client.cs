@@ -10,12 +10,10 @@ namespace ServerClient
             Url = url;
         }
         HttpClientHandler clientHandler = new HttpClientHandler();
-        public async Task/*Task<Temperature>*/ GetTemperature()
+        public async Task<Temperature> GetTemperature()
         {
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
             Temperature temperature = null;
-
             using (var client = new System.Net.Http.HttpClient(clientHandler))
             {
 
@@ -26,8 +24,26 @@ namespace ServerClient
                     temperature = JsonConvert.DeserializeObject<Temperature>(jsonString);
                 }
                 //return temperature;
-                Console.WriteLine(Url + ": " + temperature.Celsius.ToString());
+
             }
+            if (temperature != null)
+            {
+                if (Math.Abs(temperature.DataSend.Hour - DateTime.Now.Hour) < 2)
+                {
+                    //    Console.WriteLine(Url + ": " + temperature.Celsius.ToString());
+                    return temperature;
+                }
+                else
+                {
+                    //  Console.WriteLine(Url + "not responding");
+                    return temperature;
+                }
+            }
+            else
+            {
+                return temperature;
+            }
+
         }
 
     }

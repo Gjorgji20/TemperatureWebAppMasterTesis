@@ -18,10 +18,14 @@ namespace TemperatureWebAppMasterTesis.Controllers
 
        public async Task<IActionResult> Index()
         {
+            int i = 1;
             while (true)
             {
+                Console.WriteLine("Iteration" + i.ToString());
                 Delay.MinimalDelayResult();
                 await Task.Delay(6000);
+                Console.WriteLine("-------------------");
+                i++;
 
             }
             return View();
